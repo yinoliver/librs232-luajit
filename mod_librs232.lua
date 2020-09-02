@@ -18,9 +18,13 @@ function RS232:read()
 end
 
 function RS232:write(data, length)
-	for i = 0, length - 1 do
-		self.data[i] = data[i + 1]
-	end
+	-- for i = 0, length - 1 do
+	--	self.data[i] = data[i + 1]
+	--end
+	-- make sure data is byte array befor pass in. using this function just like below showing
+	-- data="Please"
+	-- port:write(data:byte(1,data:len(str)),data:len(str))
+	self.data = data
 	return self.port.librs232_write(self.dev, self.datos, length);
 end
 
